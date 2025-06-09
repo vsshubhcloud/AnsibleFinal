@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  name: Default
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: mvn compile package
+  displayName: 'Build'
+
+- script: mvn test
+  displayName: 'Test'
+
+- script: ansible-playbook ansible/playbook.yml -i ansible/hosts.ini
+  displayName: 'Deploy'
